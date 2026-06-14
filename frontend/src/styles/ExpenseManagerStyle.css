@@ -1,0 +1,550 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+    min-height: 100vh;
+    color: #1e293b; 
+}
+
+#app
+{
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    background: transparent;
+}
+
+/* LEFT PANEL */
+
+#header
+{
+    width: 100%;
+    padding: 40px 25px;
+    background: linear-gradient(180deg, #0f172a, #1e293b);
+    color: #fff;
+    text-align: center;
+    box-shadow: 5px 0 20px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+#header p:first-child
+{
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+#header p
+{
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+#enterNew {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#enterNew input,
+#enterNew select {
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+
+    width: 100%;
+    max-width: 280px;
+
+    font-size: 15px;
+
+    background: rgba(255,255,255,0.12);
+    color: white;
+
+    outline: none;
+}
+
+#enterNew input::placeholder {
+    color: #d1d5db;
+}
+
+#enterNew input:focus,
+#enterNew select:focus {
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.4);
+    transform: scale(1.02);
+}
+
+
+#enterNew select option {
+    background: #1f2937;
+    color: white;
+}
+
+
+#enterNew button,
+#searchBtn
+{
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+#logout
+{
+    margin-top: 120px;
+    background: linear-gradient(135deg, #d12121, #b61010);
+    color: white;
+    width: 280px;
+    margin-bottom: 10px;
+}
+
+#addEntry, #updateEntry
+{
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    width: 280px;
+    margin-bottom: 15px;
+}
+
+#updateEntry:hover,
+#addEntry:hover,
+#searchBtn:hover
+{
+    transform: translateY(-3px);
+    box-shadow: 0 10px 18px rgba(0,0,0,0.2);
+}
+
+/* MAIN CONTENT */
+
+#container
+{
+    width: 95%;
+    margin: 20px auto;
+    padding: 30px;
+}
+
+#container h3
+{
+    margin-bottom: 30px;
+    font-size: 34px;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+#container h5
+{
+    margin-bottom: 30px;
+    font-size: 8px;
+    /* right: 0; */
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* INCOME + EXPENSE CARDS */
+
+#showAmount
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+#income,
+#expense
+{
+    padding: 35px;
+    border-radius: 20px;
+    text-align: center;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+#income
+{
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    box-shadow: 0 10px 25px rgba(16,185,129,0.2);
+}
+
+#expense
+{
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    box-shadow: 0 10px 25px rgba(239,68,68,0.2);
+}
+
+#income:hover,
+#expense:hover
+{
+    transform: translateY(-5px);
+}
+
+#income p,
+#expense p
+{
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.6;
+}
+
+#income p
+{
+    color: #047857;
+}
+
+#expense p
+{
+    color: #b91c1c;
+}
+
+/* FILTERS */
+
+select,
+#search
+{
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    background: white;
+    font-size: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+select:hover,
+#search:hover,
+select:focus,
+#search:focus
+{
+    transform: translateY(-2px);
+    outline: none;
+}
+
+select{
+    width: 160px;
+}
+
+#search
+{
+    margin-left: 50px;
+    margin-right: 10px;
+    width: 320px;
+}
+
+#searchBtn
+{
+    width: 140px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+}
+
+/* ENTRIES */
+
+#viewExpense
+{
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#singleContent
+{
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+#singleContent:hover
+{
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+#singleContent div:first-child
+{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#singleContent div:first-child div:first-child
+{
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    text-transform: capitalize;
+}
+
+#singleContent div:first-child div:last-child
+{
+    font-size: 14px;
+    color: #64748b;
+}
+
+#singleContent div:last-child
+{
+    text-align: right;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+#deleteButton
+{
+    margin-top: 15px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #fee2e2;
+    color: #dc2626;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#deleteButton:hover
+{
+    background: #dc2626;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 900px)
+{
+    #app
+    {
+        grid-template-columns: 1fr;
+    }
+
+    #header
+    {
+        height: auto;
+        position: relative;
+        padding-bottom: 50px;
+    }
+
+    #showAmount
+    {
+        grid-template-columns: 1fr;
+    }
+
+    #search
+    {
+        width: 100%;
+        margin: 15px 0;
+    }
+
+    #singleContent
+    {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    #singleContent div:last-child
+    {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+
+
+/* ENTRIES GRID */
+
+#viewExpense
+{
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+/* SINGLE CARD */
+
+#singleContent
+{
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 25px;
+    min-height: 220px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    transition: 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+    border: 1px solid rgba(255,255,255,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+#singleContent::before
+{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+}
+
+#singleEntry:hover
+{
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 16px 35px rgba(0,0,0,0.12);
+}
+
+/* LEFT CONTENT */
+
+#singleContent div:first-child
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#singleContent div:first-child div:first-child
+{
+    font-size: 28px !important;
+    font-weight: 700;
+    color: #0f172a;
+    text-transform: capitalize;
+}
+
+#singleContent div:first-child div:last-child
+{
+    font-size: 14px !important;
+    color: #64748b;
+}
+
+/* RIGHT CONTENT */
+
+#singleContent div:last-child
+{
+    text-align: center;
+    font-size: 22px !important;
+    font-weight: 700;
+    color: #334155;
+}
+
+/* DELETE BUTTON */
+
+#deleteButton
+{
+    margin-top: 18px !important;
+    margin-right: 10px;
+    padding: 12px 12px;
+    border: none;
+    border-radius: 12px;
+    background: #fee2e2;
+    color: #dc2626;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#deleteButton:hover
+{
+    background: #dc2626;
+    color: white;
+    transform: scale(1.05);
+}
+
+#updateButton
+{
+    margin-top: 18px !important;
+    padding: 12px 12px;
+    border: none;
+    border-radius: 12px;
+    background: #e2fee4;
+    color: #26dc78;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#updateButton:hover
+{
+    background: #26dc78;
+    color: white;
+    transform: scale(1.05);
+}
+
+#popup {
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  min-width: 280px;
+  max-width: 400px;
+
+  background: white;
+  color: #333;
+
+  padding: 20px;
+  border-radius: 12px;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+  text-align: center;
+  z-index: 1000;
+}
+
+#popup button {
+  margin-top: 15px;
+
+  border: none;
+  border-radius: 8px;
+
+  padding: 10px 20px;
+
+  background: #3498db;
+  color: white;
+
+  cursor: pointer;
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+#popup button:hover {
+  background: #2980b9;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width: 900px)
+{
+    #viewExpense
+    {
+        grid-template-columns: 1fr;
+    }
+}

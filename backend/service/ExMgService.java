@@ -29,29 +29,8 @@ public class ExMgService {
     @Autowired
     UserRepo userRepo;
 
-//    public ResponseEntity<?> showExpenses(String userId)
-//    {
-//        User user=userRepo.findById(userId).orElse(null);
-//        if(user==null)
-//            throw new UserNotFoundException("User Not Found.");
-//        if(!user.getStatus().equals("Logged in."))
-//            throw new UserNotLoggedInException("User not logged in.");
-//        ShowExpenseDto userExpenses=new ShowExpenseDto();
-//        userExpenses.setRole(user.getRole());
-//        userExpenses.setName(user.getName());
-//        userExpenses.setEmailId(user.getEmailId());
-//        userExpenses.setMobileNumber(user.getMobileNumber());
-//        userExpenses.setStatus(user.getStatus());
-//        List<ExMg> listOfExpenses=repo.findAllByEmailId(userId);
-//        userExpenses.setExpenses(listOfExpenses);
-//        return ResponseEntity.ok(userExpenses);
-//    }
-
     public ResponseEntity<?> getAllExpenses(String userId)
     {
-//        User user=userRepo.findById(userId).orElse(null);
-//        if(user==null)
-//            throw new UserNotFoundException("User Not Found.");
         return ResponseEntity.ok(repo.findAllByEmailId(userId));
     }
 
@@ -121,24 +100,5 @@ public class ExMgService {
         repo.delete(expense);
         return ResponseEntity.ok("Expense deleted");
     }
-
-//    public ResponseEntity<?> getByCategory(CategoryInputDto ex)
-//    {
-//        return ResponseEntity.ok(repo.findByCategory(ex.getCategory()));
-//    }
-
-//    public ResponseEntity<Double> getTotalAmount()
-//    {
-//        return  ResponseEntity.ok(repo.getTotalAmount());
-//    }
-
-//    public ResponseEntity<?> divide(Long id)  {
-//        try{
-//            long result = 100 / id;
-//            return  ResponseEntity.ok("success");
-//        }catch (ArithmeticException e){
-//           throw new Abhi("testing excpeiton Abhi");
-//        }
-//    }
 
 }

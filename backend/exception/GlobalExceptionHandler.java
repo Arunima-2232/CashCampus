@@ -16,19 +16,6 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    public ResponseEntity<Map<String, String>> handleValidationErrors(
-//            MethodArgumentNotValidException ex) {
-//
-//        Map<String, String> errors = new HashMap<>();
-//
-//        ex.getBindingResult().getFieldErrors().forEach(error ->
-//                errors.put(error.getField(), error.getDefaultMessage())
-//        );
-//
-//        return ResponseEntity.badRequest().body(errors);
-//    }
-
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleValidationErrors(
             MethodArgumentNotValidException ex) {
@@ -70,13 +57,9 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(responseDto, HttpStatus.CONFLICT);
     }
 
-    @ExceptionHandler(ArithmeticException.class)
-    public ResponseEntity<?> handleArithException(Exception e){
-        return ResponseEntity.badRequest().body(e.getMessage() + "Arith");
-    }
 
     @ExceptionHandler(ExpenseNotFoundException.class)
-    public ResponseEntity<?> handleExapnseNotFoundException(Exception e){
+    public ResponseEntity<?> handleExpenseNotFoundException(Exception e){
         ResponseDto responseDto = new ResponseDto();
         responseDto.setMessage(e.getMessage());
         responseDto.setTime(LocalDateTime.now());
@@ -92,14 +75,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(rdto);
     }
 
-    @ExceptionHandler(Abhi.class)
-    public ResponseEntity<?> handleAbhi(Exception e)
-    {
-        ResponseDto rdto=new ResponseDto();
-        rdto.setMessage(e.getMessage());
-        rdto.setTime(LocalDateTime.now());
-        return ResponseEntity.badRequest().body(rdto);
-    }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleException(Exception e){
@@ -108,12 +83,4 @@ public class GlobalExceptionHandler {
     }
 
 
-//    @ExceptionHandler(UserNotLoggedInException.class)
-//    public ResponseEntity<?> handleUserNotLoggedInException(Exception e){
-//        ResponseDto responseDto = new ResponseDto();
-//        responseDto.setMessage(e.getMessage());
-//        responseDto.setTime(LocalDateTime.now());
-//        return new ResponseEntity<>(responseDto, HttpStatus.UNAUTHORIZED);
-////        return ResponseEntity.badRequest().body(responseDto);
-//    }
 }

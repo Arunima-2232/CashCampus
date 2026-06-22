@@ -21,12 +21,6 @@ public class ExMgController {
     @Autowired
     ExMgService service;
 
-//    @PostMapping("/showExpenses/{userId}")
-//    public ResponseEntity<?> showExpenses(@PathVariable @NotBlank @Email(message = "must provide email") String userId)
-//    {
-//        return service.showExpenses(userId);
-//    }
-
     @PostMapping("/get")
     public ResponseEntity<?> getAllExpenses()
     {
@@ -71,29 +65,5 @@ public class ExMgController {
     {
         return service.deleteExpense(ex);
     }
-
-//    @GetMapping("/getByCat")
-//    public ResponseEntity<?> getByCategory(@RequestBody @Valid CategoryInputDto ex)
-//    {
-//        return service.getByCategory(ex);
-//    }
-
-//    @GetMapping("/getTotalAmt")
-//    public ResponseEntity<Double> getTotalAmount()
-//    {
-//        return service.getTotalAmount();
-//    }
-
-
-//    @PostMapping("/divide/{number}")
-//    public ResponseEntity<?> divide(@RequestParam("number") Long id) throws Exception {
-////        try {
-////            return service.divide(id);
-////        } catch (Exception e){
-////            return ResponseEntity.badRequest().body("Failed");
-////        }
-//
-//        return service.divide(id);
-//    }
 
 }
